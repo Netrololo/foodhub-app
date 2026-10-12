@@ -1,4 +1,4 @@
-    name: FoodHub .NET CI
+name: FoodHub .NET CI
 
 on:
   push:
