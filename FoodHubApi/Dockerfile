@@ -1,18 +1,12 @@
 FROM ://microsoft.com AS build
-WORKDIR /src
-
-COPY ["FoodHubApi/FoodHubApi.csproj", "FoodHubApi/"]
-RUN dotnet restore "FoodHubApi/FoodHubApi.csproj"
+WORKDIR /app
 
 COPY . .
-WORKDIR "/src/FoodHubApi"
-RUN dotnet build "FoodHubApi.csproj" -c Release -o /app/build
+RUN dotnet restore "FoodHubApi.csproj"
+RUN dotnet publish "FoodHubApi.csproj" -c Release -o out
 
-FROM build AS publish
-RUN dotnet publish "FoodHubApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM ://microsoft.com AS final
+FROM ://microsoft.com
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out .
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "FoodHubApi.dll"]
