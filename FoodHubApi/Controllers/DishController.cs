@@ -7,7 +7,6 @@ namespace FoodHubApi.Controllers
     [Route("api/[controller]")]
     public class DishController : ControllerBase
     {
-        // Эндпоинт, который будет отдавать ингредиенты для экрана кастомизации
         [HttpGet("{id}/modifiers")]
         public IActionResult GetDishModifiers(int id)
         {

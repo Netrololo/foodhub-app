@@ -1,10 +1,11 @@
 ﻿FROM ://microsoft.com AS build
 WORKDIR /src
 
-COPY ["FoodHubApi.csproj", "."]
-RUN dotnet restore "FoodHubApi.csproj"
+COPY ["FoodHubApi/FoodHubApi.csproj", "FoodHubApi/"]
+RUN dotnet restore "FoodHubApi/FoodHubApi.csproj"
 
 COPY . .
+WORKDIR "/src/FoodHubApi"
 RUN dotnet build "FoodHubApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
