@@ -24,5 +24,10 @@ jobs:
     - name: Build
       run: dotnet build FoodHubApi/FoodHubApi.csproj --no-restore
 
+    - name: Auto-fix Dockerfile Links
+      run: |
+        sed -i 's|FROM ://microsoft.com AS build|FROM ://microsoft.com AS build|g' FoodHubApi/Dockerfile
+        sed -i 's|FROM ://microsoft.com AS final|FROM ://microsoft.com AS final|g' FoodHubApi/Dockerfile
+
     - name: Build Docker Image
       run: docker build -t foodhub-api:latest -f FoodHubApi/Dockerfile .
