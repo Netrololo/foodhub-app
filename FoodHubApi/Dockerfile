@@ -1,25 +1,19 @@
-name: FoodHub .NET CI
+FROM ://microsoft.com AS build
+WORKDIR /src
 
-on:
-  push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
+COPY ["FoodHubApi/FoodHubApi.csproj", "FoodHubApi/"]
+RUN dotnet restore "FoodHubApi/FoodHubApi.csproj"
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+COPY . .
+WORKDIR "/src/FoodHubApi"
 
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore FoodHubApi/FoodHubApi.csproj
-      
-    - name: Build
-      run: dotnet build FoodHubApi/FoodHubApi.csproj --no-restore
+RUN dotnet build "FoodHubApi.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "FoodHubApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM ://microsoft.com AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "FoodHubApi.dll"]
