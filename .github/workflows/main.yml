@@ -6,20 +6,42 @@ on:
   pull_request:
     branches: [ "main", "master" ]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-        
+
     - name: Restore dependencies
       run: dotnet restore FoodHubApi/FoodHubApi.csproj
-      
-    - name: Build
+
+    - name: Build Code
       run: dotnet build FoodHubApi/FoodHubApi.csproj --no-restore
+
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./FoodHubApi/Dockerfile
+        push: true
+        tags: |
+          ghcr.io/netrololo/foodhub-app:latest
+          ghcr.io/netrololo/foodhub-app:${{ github.sha }}
