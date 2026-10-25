@@ -21,7 +21,7 @@ export const DishConstructor: React.FC<{ dishId: number }> = ({ dishId }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5156/api/dish/modifiers/${dishId}`)
+        fetch(`https://localhost:7023/api/dish/${dishId}/modifiers`)
             .then((res) => res.json())
             .then((data) => {
                 setDish(data);
