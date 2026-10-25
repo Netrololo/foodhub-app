@@ -1,3 +1,15 @@
-﻿bin/
-obj/
+**/bin/
+**/obj/
+
 .vs/
+.vscode/
+*.user
+*.suo
+
+.git/
+.gitignore
+
+Dockerfile
+.dockerignore
+
+**/appsettings.Development.json
