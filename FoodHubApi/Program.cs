@@ -35,6 +35,15 @@ app.UseCors("AllowReactClient");
 
 app.UseAuthorization();
 
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/api"))
+    {
+        context.Response.Headers.Append("X-Robots-Tag", "noindex, nofollow");
+    }
+    await next();
+});
+
 app.MapControllers();
 
 app.Run();

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /profile/      # Закрываем личный кабинет пользователя
+Disallow: /basket/       # Закрываем корзину группового заказа
+Disallow: /checkout/     # Закрываем страницу оплаты заказа
+
+Sitemap: https://example.com/sitemap.xml
