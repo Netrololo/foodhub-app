@@ -1,18 +1,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
-
-COPY ["FoodHubApi/FoodHubApi.csproj", "FoodHubApi/"]
-RUN dotnet restore "FoodHubApi/FoodHubApi.csproj"
-
+COPY ["FoodHubApi.csproj", "./"]
+RUN dotnet restore "FoodHubApi.csproj"
 COPY . .
-WORKDIR "/src/FoodHubApi"
-RUN dotnet build "FoodHubApi.csproj" -c Release -o /app/build
-
-FROM build AS publish
 RUN dotnet publish "FoodHubApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
+
+USER app
+ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
+
 ENTRYPOINT ["dotnet", "FoodHubApi.dll"]
