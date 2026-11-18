@@ -20,9 +20,10 @@ export const DishConstructor: React.FC<{ dishId: number }> = ({ dishId }) => {
     const [loading, setLoading] = useState<boolean>(true);
 
 
-    useEffect(() => {
-        fetch(`https://localhost:7023/api/dish/${dishId}/modifiers`)
-            .then((res) => res.json())
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL ?? "https://localhost:7023/api";
+    fetch(`${apiUrl}/dish/${dishId}/modifiers`)
+      .then((res) => res.json())
             .then((data) => {
                 setDish(data);
 
