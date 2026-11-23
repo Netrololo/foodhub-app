@@ -50,7 +50,6 @@
   ```bash
   docker compose down
   ```
-
 ## 5. Результаты развертывания (скриншоты)
 
 ### Статус запущенных контейнеров (`docker compose ps`)
@@ -60,10 +59,10 @@
 ![Сайт по HTTPS](screenshots/Снимок%20экрана%202026-11-23%20101956.png)
 
 ### Запрос к API и заголовок `X-Robots-Tag` (DevTools → Network)
-![Запрос к API](screenshots/network-headers.png)
+![Запрос к API](screenshots/Снимок%20экрана%202026-11-23%20104135.png)
 
 ### Контейнеры и открытые порты в Docker Desktop
-![Docker Desktop](screenshots/docker-desktop.png)
+![Docker Desktop](screenshots/Снимок%20экрана%202026-11-23%20103940.png)
 
 ### Проверка сборки в GitHub Actions (CI)
 ![GitHub Actions](screenshots/Снимок%20экрана%202026-11-23%20102005.png)
