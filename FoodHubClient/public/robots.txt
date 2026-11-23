@@ -1,6 +1,7 @@
 User-agent: *
-Disallow: /profile/      # Закрываем личный кабинет пользователя
-Disallow: /basket/       # Закрываем корзину группового заказа
-Disallow: /checkout/     # Закрываем страницу оплаты заказа
+Disallow: /profile/    # Закрываем личный кабинет пользователя
+Disallow: /basket/     # Закрываем корзину группового заказа
+Disallow: /checkout/   # Закрываем страницу оплаты заказа
+Disallow: /api/        # Закрываем служебные адреса API
 
 Sitemap: https://example.com/sitemap.xml
