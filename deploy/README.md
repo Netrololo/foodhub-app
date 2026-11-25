@@ -26,16 +26,20 @@
 
 ## 3. Переменные окружения и секреты
 
-В репозитории и Docker-образах не хранятся конфиденциальные данные. Шаблон переменных приведён в `deploy/.env.example`, а реальные значения передаются при запуске через локальный файл `deploy/.env` (исключённый из Git через `.gitignore`):
+Конфигурация развертывания вынесена в отдельный репозиторий: **[foodhub-app-deploy](https://github.com/Netrololo/foodhub-app-deploy.git)**.
+
+В репозиториях и Docker-образах не хранятся конфиденциальные данные. Шаблон переменных приведён в `foodhub-app-deploy/.env.example`, а реальные значения передаются при запуске через локальный файл `foodhub-app-deploy/.env` (исключённый из Git через `.gitignore`):
 
 * `ASPNETCORE_ENVIRONMENT` — режим запуска бэкенда (`Production`).
 * `VITE_API_URL` — аргумент этапа сборки фронтенда, задающий относительный базовый путь для запросов к API (`/api`).
 * `ConnectionStrings__DefaultConnection` — строка подключения к базе данных PostgreSQL (Supabase) через IPv4 Session Pooler с обязательным шифрованием (`SSL Mode=Require`).
-* Локальные TLS-сертификаты (`foodhub.localhost.pem` и `foodhub.localhost-key.pem`) подключаются к контейнеру `nginx` через `volumes` (`:ro`) и исключены из Git (`deploy/certs/`).
+* Локальные TLS-сертификаты (`foodhub.localhost.pem` и `foodhub.localhost-key.pem`) располагаются в локальной папке `foodhub-app-deploy/certs/` (исключена из Git в `.gitignore`) и подключаются к контейнеру `nginx` через `volumes` (`:ro`).
 
 ## 4. Команды запуска и остановки проекта
 
-Все команды выполняются из директории `deploy/`:
+Конфигурационные файлы (`docker-compose.yml` и `nginx/nginx.conf`) находятся в репозитории **[foodhub-app-deploy](https://github.com/Netrololo/foodhub-app-deploy.git)**, который должен располагаться рядом с основным репозиторием `foodhub-app` в одной родительской директории.
+
+Все команды выполняются из директории `foodhub-app-deploy/`:
 
 * **Сборка образов и запуск всех сервисов в фоновом режиме:**
   ```bash
