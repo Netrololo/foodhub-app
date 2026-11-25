@@ -28,7 +28,7 @@
 
 Конфигурация развертывания вынесена в отдельный репозиторий: **[foodhub-app-deploy](https://github.com/Netrololo/foodhub-app-deploy.git)**.
 
-В репозиториях и Docker-образах не хранятся конфиденциальные данные. Шаблон переменных приведён в `foodhub-app-deploy/.env.example`, а реальные значения передаются при запуске через локальный файл `foodhub-app-deploy/.env` (исключённый из Git через `.gitignore`):
+В репозиториях и Docker-образах не хранятся конфиденциальные данные. Шаблоны переменных приведены в `FoodHubApi/.env.example` и `FoodHubClient/.env.example`, а реальные значения передаются при запуске через локальный файл `foodhub-app-deploy/.env` (исключённый из Git через `.gitignore`):
 
 * `ASPNETCORE_ENVIRONMENT` — режим запуска бэкенда (`Production`).
 * `VITE_API_URL` — аргумент этапа сборки фронтенда, задающий относительный базовый путь для запросов к API (`/api`).
