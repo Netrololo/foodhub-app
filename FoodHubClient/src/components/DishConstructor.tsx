@@ -55,22 +55,26 @@ export const DishConstructor: React.FC<{ dishId: number }> = ({ dishId }) => {
   };
 
   if (loading || !dish) {
-    return <div className="text-white p-5">Загрузка конструктора FoodHub...</div>;
+    return (
+      <div className="p-6 w-full max-w-[400px] min-h-[345px] bg-[#141416] text-zinc-300 rounded-2xl font-sans shadow-xl border border-zinc-800/80 flex items-center justify-center">
+        Загрузка конструктора FoodHub...
+      </div>
+    );
   }
 
   return (
-    <div className="p-6 w-full max-w-[400px] bg-[#141416] text-white rounded-2xl font-sans shadow-xl border border-zinc-800/80">
+    <div className="p-6 w-full max-w-[400px] min-h-[345px] bg-[#141416] text-white rounded-2xl font-sans shadow-xl border border-zinc-800/80">
       <h2 className="text-[#28a745] mb-2 text-2xl font-bold">
         {dish.name}
       </h2>
-      <p className="text-[#6c757d] mb-5 text-sm">
+      <p className="text-zinc-400 mb-5 text-sm">
         Стартовая цена: {dish.basePrice} ₽
       </p>
 
       <div className="my-5">
-        <h4 className="border-b border-[#232325] pb-2 mb-3 text-[#adb5bd] text-sm font-medium">
+        <h3 className="border-b border-[#232325] pb-2 mb-3 text-zinc-300 text-sm font-medium">
           Дополнительные ингредиенты:
-        </h4>
+        </h3>
 
         {dish.modifiers.map((mod) => (
           <div
@@ -87,7 +91,7 @@ export const DishConstructor: React.FC<{ dishId: number }> = ({ dishId }) => {
               <span>
                 {mod.name}{' '}
                 {mod.isDefault && (
-                  <span className="text-[11px] text-[#495057]">(базовый)</span>
+                  <span className="text-xs text-zinc-400">(базовый)</span>
                 )}
               </span>
             </label>
@@ -101,12 +105,12 @@ export const DishConstructor: React.FC<{ dishId: number }> = ({ dishId }) => {
 
       <div className="flex justify-between items-center mt-6 pt-5 border-t border-[#232325]">
         <div>
-          <span className="text-xs text-[#6c757d] block">
+          <span className="text-xs text-zinc-400 block">
             Итоговая стоимость:
           </span>
-          <h3 className="text-2xl font-bold">
+          <p className="text-2xl font-bold">
             {calculateTotalPrice()} ₽
-          </h3>
+          </p>
         </div>
 
         <button className="bg-[#28a745] hover:bg-[#218838] active:scale-[0.98] text-white font-medium px-6 py-3 rounded-lg transition cursor-pointer">

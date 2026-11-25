@@ -1,7 +1,7 @@
 User-agent: *
-Disallow: /profile/    # Закрываем личный кабинет пользователя
-Disallow: /basket/     # Закрываем корзину группового заказа
-Disallow: /checkout/   # Закрываем страницу оплаты заказа
-Disallow: /api/        # Закрываем служебные адреса API
+Disallow: /profile/
+Disallow: /basket/
+Disallow: /checkout/
+Disallow: /api/
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://foodhub.localhost/sitemap.xml
