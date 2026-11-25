@@ -61,19 +61,19 @@
 ## 5. Результаты развертывания (скриншоты)
 
 ### Статус запущенных контейнеров (`docker compose ps`)
-![Статус контейнеров](screenshots/Снимок%20экрана%202026-11-23%20101943.png)
+![Статус контейнеров](screenshots/docker-compose-ps.png)
 
 ### Работа приложения по HTTPS (`https://foodhub.localhost`)
-![Сайт по HTTPS](screenshots/Снимок%20экрана%202026-11-23%20101956.png)
+![Сайт по HTTPS](screenshots/https-site.png)
 
 ### Запрос к API и заголовок `X-Robots-Tag` (DevTools → Network)
-![Запрос к API](screenshots/Снимок%20экрана%202026-11-23%20104135.png)
+![Запрос к API](screenshots/api-x-robots-tag.png)
 
 ### Контейнеры и открытые порты в Docker Desktop
-![Docker Desktop](screenshots/Снимок%20экрана%202026-11-23%20103940.png)
+![Docker Desktop](screenshots/docker-desktop-ports.png)
 
 ### Проверка сборки в GitHub Actions (CI)
-![GitHub Actions](screenshots/Снимок%20экрана%202026-11-23%20102005.png)
+![GitHub Actions](screenshots/github-actions-ci.png)
 
 ## 6. Возникшие ошибки и способы их устранения
 
